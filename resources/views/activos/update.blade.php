@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Modificar')
 
@@ -34,11 +34,6 @@
                 <div class="mb-3">
                     <label for="fecha_adquisicion" class="form-label">Fecha de adquisición</label>
                     <input type="date" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion">
-                    <select name="fecha_adquisicion" id="fecha_adquisicion" class="form-select">
-                       {{-- @foreach ($fecha_adquisicion as $item) --}}
-                       {{-- <option value="{{$item->codigo}}">{{$item->nombre}}</option> --}}
-                       {{-- @endforeach --}}
-                    </select>
                     @error('fecha_adquisicion')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>

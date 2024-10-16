@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Activos')
 
@@ -58,26 +58,33 @@
                 </thead>
                 <tbody>
                     {{-- Listado de activos --}}
-                   {{-- @foreach ($activos as $item) --}}
-                    <tr class="table-light">
-                        <td>{{ $item->codigo }}</td>
-                        <td>{{ $item->nombre }}</td>
-                        <td>${{ number_format($item->precio, 2) }}</td>
-                        <td>{{ $item->marca }}</td>
-                        <td>
-                            <a class="btn btn-sm shadow" href="/activos/update/{{$item->codigo}}" 
-                               style="background: linear-gradient(45deg, #8e24aa, #ab47bc); border: none; color: white;">
-                               Modificar
-                            </a>
-                            <button class="btn btn-danger btn-sm shadow" url="/activos/destroy/{{$item->codigo}}" 
+                    <tbody>
+                        @foreach ($activos as $item)
+                        <tr class="table-light">
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->nombre }}</td>
+                            <td>{{ $item->descripcion }}</td>
+                            <td>{{ $item->codigo_inventario }}</td>
+                            <td>{{ $item->fecha_adquisicion }}</td>
+                            <td>{{ $item->valor }}</td>
+                            <td>{{ $item->depreciacion }}</td>
+                            <td>{{ $item->id_categoria }}</td>
+                            <td>{{ $item->id_ubicacion }}</td>
+                            <td>{{ $item->id_usuario }}</td>
+                            <td>
+                                <a class="btn btn-sm shadow" href="/activos/update/{{$item->id}}" 
+                                    style="background: linear-gradient(45deg, #8e24aa, #ab47bc); border: none; color: white;">
+                                    Modificar
+                                </a>
+                                <button class="btn btn-danger btn-sm shadow" url="/activos/destroy/{{$item->id}}" 
                                     onclick="destroy(this)" token="{{ csrf_token() }}" 
                                     style="background: linear-gradient(45deg, #f44336, #ef5350); border: none;">
-                               Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                   {{-- @endforeach --}}
-                </tbody>
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach 
+                    </tbody>
             </table>
         </div>
     </div>

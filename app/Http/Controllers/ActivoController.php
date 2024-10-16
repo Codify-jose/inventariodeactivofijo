@@ -1,17 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Activo;
 use Illuminate\Http\Request;
 
 class ActivoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        //listar todos los productos
+                
+
     }
 
     /**
@@ -20,6 +26,8 @@ class ActivoController extends Controller
     public function create()
     {
         //
+        $mantenimientos = mantenimientos::all();
+        return view('/activos/create')->with(['mantenimientos'=>$mantenimientos]); 
     }
 
     /**
@@ -28,6 +36,22 @@ class ActivoController extends Controller
     public function store(Request $request)
     {
         //
+        $data = request()->validate([ 
+            'nombre'=> 'required', 
+            'descripcion'=> 'required', 
+            'codigo_inventario'=> 'required',
+            'fecha_adquisicion'=> 'required', 
+            'valor'=> 'required', 
+            'depreciacion'=> 'required', 
+            'id_categoria'=> 'required', 
+            'id_ubicacion'=> 'required', 
+            'id_usuario'=> 'required', 
+
+            ]); 
+            // Enviar insert 
+            Activo::create($data); 
+            // Redireccionar 
+            return redirect('/activos/show'); 
     }
 
     /**

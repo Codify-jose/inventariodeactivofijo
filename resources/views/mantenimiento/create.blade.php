@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Crear')
 
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="costo" class="form-label">Costo</label>
-                        <input type="double" class="form-control" id="costo" name="costo">
+                        <input type="number" step="any" class="form-control" id="costo" name="costo">
                         @error('costo')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="descripcion" class="form-label"> Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion">
+                        <input type="number" step="any" class="form-control" id="descripcion" name="descripcion">
                         @error('descripcion')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>

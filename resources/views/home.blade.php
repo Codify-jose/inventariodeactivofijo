@@ -1,5 +1,5 @@
 {{-- Heradomos la estructura del archivo app.blade.app --}}
-@extends('layout.app')
+@extends('layouts.app')
 
 {{-- Definimos el título --}}
 @section('title','Inicio')

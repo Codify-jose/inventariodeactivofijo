@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Crear')
 
@@ -34,11 +34,7 @@
                 <div class="mb-3">
                     <label for="fecha_adquisicion" class="form-label">Fecha de adquisición</label>
                     <input type="date" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion">
-                    <select name="fecha_adquisicion" id="fecha_adquisicion" class="form-select">
-                       {{-- @foreach ($fecha_adquisicion as $item) --}}
-                       {{-- <option value="{{$item->codigo}}">{{$item->nombre}}</option> --}}
-                       {{-- @endforeach --}}
-                    </select>
+
                     @error('fecha_adquisicion')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
@@ -47,7 +43,7 @@
                 </div>
                 <div class="col-md-6">
                         <label for="valor" class="form-label">Valor</label>
-                        <input type="text" class="form-control" id="valor" name="valor">
+                        <input type="number" class="form-control" step="any" id="valor" name="valor">
                         @error('valor')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -56,7 +52,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="depreciacion" class="form-label">Depreciación</label>
-                        <input type="text" class="form-control" id="depreciacion" name="depreciacion">
+                        <input type="number" step="any" class="form-control" id="depreciacion" name="depreciacion">
                         @error('depreciacion')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>

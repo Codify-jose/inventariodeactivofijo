@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Crear')
 
@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="fecha_movimiento" class="form-label">Fecha de movimiento</label>
-                        <input type="text" class="form-control" id="fecha_movimiento" name="fecha_movimiento">
+                        <input type="date" class="form-control" id="fecha_movimiento" name="fecha_movimiento">
                         @error('fecha_movimiento')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
