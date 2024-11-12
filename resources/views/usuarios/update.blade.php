@@ -9,13 +9,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 bg-light p-4 rounded">
-            <form action="/usuarios/store" method="POST">
+            <form action="/usuarios/update/{{$usuario->id}}" method="POST">
                 @csrf
+                 @method('PUT') 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
-                        @error('nombre')
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                        value="{{$usuario->nombre}}">@error('nombre')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
@@ -23,8 +24,8 @@
                     </div>
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
-                        @error('email')
+                        <input type="email" class="form-control" id="email" name="email"
+                        value="{{$usuario->email}}">@error('email')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
@@ -32,8 +33,8 @@
                     </div>
                     <div class="col-md-6">
                         <label for="telefono" class="form-label">Telefono</label>
-                        <input type="number" class="form-control" id="telefono" name="telefono">
-                        @error('telefono')
+                        <input type="number" class="form-control" id="telefono" name="telefono"
+                        value="{{$usuario->telefono}}">@error('telefono')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>

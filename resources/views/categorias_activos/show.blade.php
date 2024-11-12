@@ -3,6 +3,31 @@
 @section('title', 'Categorias')
 
 @section('content')
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLabel">Notificación</h5>
+            </div>
+            <div class="modal-body">
+                @if (session('notification'))
+                {{session('notification') }}
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var notification = "{{session('notification')}}";
+        if (notification) {
+            $('#notificationModal').modal('show');
+        }
+    });
+</script>
 <!-- Encabezado con estilo -->
  <style>
     a.btn:hover {
@@ -32,7 +57,7 @@
            style="background: linear-gradient(45deg, #1e88e5, #64b5f6); border: none; color: white;">
            Agregar nueva categoria
         </a>
-        <a class="btn btn-sm shadow" href="/reporte" 
+        <a class="btn btn-sm shadow" href="/reporteDos" 
            style="background: linear-gradient(45deg, #1e88e5, #64b5f6); border: none; color: white;">
            Generar PDF
         </a>
@@ -47,28 +72,31 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- Listado de categorias --}}
-                   {{-- @foreach ($categorias as $item) --}}
-                    <tr class="table-light">
-                        <td>{{ $item->codigo }}</td>
-                        <td>{{ $item->nombre }}</td>
-                        <td>{{ $item->descripcion}}</td>
-                        <td>
-                            <a class="btn btn-sm shadow" href="/categorias_activos/update/{{$item->codigo}}" 
-                               style="background: linear-gradient(45deg, #8e24aa, #ab47bc); border: none; color: white;">
-                               Modificar
-                            </a>
-                            <button class="btn btn-danger btn-sm shadow" url="/categorias_actios/destroy/{{$item->codigo}}" 
-                                    onclick="destroy(this)" token="{{ csrf_token() }}" 
-                                    style="background: linear-gradient(45deg, #f44336, #ef5350); border: none;">
-                               Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                   {{-- @endforeach --}}
+                    {{-- Verificación de si hay categorías --}}
+                    @if($categoriasActivo->isNotEmpty())
+                        @foreach ($categoriasActivo as $item)
+                        <tr class="table-light">
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->nombre }}</td>
+                            <td>{{ $item->descripcion }}</td>
+                            <td>
+                                <a class="btn btn-sm shadow" href="/categorias_activos/edit/{{$item->id}}" 
+                                   style="background: linear-gradient(45deg, #8e24aa, #ab47bc); border: none; color: white;">
+                                   Modificar
+                                </a>
+                                <button class="btn btn-danger btn-sm shadow" url="/categorias_activos/destroy/{{$item->id}}" onclick="destroy(this)" token="{{ csrf_token() }}">Eliminar</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4">No hay categorías disponibles</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -80,5 +108,5 @@
 {{-- SweetAlert --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {{-- JS --}}
-<script src="{{ asset('js/product.js') }}"></script>
+<script src="{{ asset('js/categoria.js') }}"></script>
 @endsection

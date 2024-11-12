@@ -11,4 +11,10 @@ class Activo extends Model
     protected $table='activos';
     protected $primaryKey = 'id';
     protected $fillable = ['nombre', 'descripcion','codigo_inventario','fecha_adquisicion','valor','depreciacion','id_categoria','id_ubicacion','id_usuario']; 
+
+    public function categoriaActivo()
+    {
+        // Relación inversa de "pertenece a"
+        return $this->belongsTo(CategoriaActivo::class, 'id_categoria');
+    }
 }

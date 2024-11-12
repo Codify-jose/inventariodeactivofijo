@@ -9,12 +9,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 bg-light p-4 rounded">
-            <form action="/activos/store" method="POST">
+            <form action="/categorias_activos/store" method="POST">
                 @csrf
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{old('nombre')}}">
                         @error('nombre')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion">
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{old('descripcion')}}">
                         @error('descripcion')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>

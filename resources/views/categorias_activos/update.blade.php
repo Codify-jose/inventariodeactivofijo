@@ -9,13 +9,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 bg-light p-4 rounded">
-            <form action="/caegorias_activos/store" method="POST">
+            <form action="/categorias_activos/update/{{$categoriasActivo->id}}" method="POST">
                 @csrf
+                @method('PUT') 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
-                        @error('nombre')
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                        value="{{$categoriasActivo->nombre}}"> @error('nombre')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
@@ -23,8 +24,8 @@
                     </div>
                     <div class="col-md-6">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion">
-                        @error('descripcion')
+                        <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        value="{{$categoriasActivo->descripcion}}">@error('descripcion')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ubicacion extends Model
 {
     use HasFactory;
+    protected $table = 'ubicaciones';
+    protected $primaryKey = 'id';
+    protected $fillable = ['nombre', 'direccion'];
 }

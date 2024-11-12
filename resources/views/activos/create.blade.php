@@ -30,6 +30,15 @@
                         </span>
                         @enderror
                     </div>
+                    <div class="col-md-6">
+                        <label for="codigo_inventario" class="form-label">Código de inventario</label>
+                        <input type="number" step="any" class="form-control" id="codigo_inventario" name="codigo_inventario">
+                        @error('codigo_inventario')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="fecha_adquisicion" class="form-label">Fecha de adquisición</label>
@@ -59,6 +68,45 @@
                         </span>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                    <label for="id_categoria" class="form-label">Categoria</label>
+                    <select name="id_categoria" id="id_categoria" class="form-select">
+                        @foreach ($categorias as $item)
+                        <option value="{{$item->id}}">{{$item->nombre}}</option>
+                        @endforeach
+                    </select>
+                    @error('id_categoria')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="id_ubicacion" class="form-label">Ubicación</label>
+                    <select name="id_ubicacion" id="id_ubicacion" class="form-select">
+                        @foreach ($ubicaciones as $item)
+                        <option value="{{$item->id}}">{{$item->nombre}}</option>
+                        @endforeach
+                    </select>
+                    @error('id_ubicacion')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="id_usuario" class="form-label">Usuario</label>
+                    <select name="id_usuario" id="id_usuario" class="form-select">
+                        @foreach ($usuarios as $item)
+                        <option value="{{$item->id}}">{{$item->nombre}}</option>
+                        @endforeach
+                    </select>
+                    @error('id_usuario')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
                 <div class="text-center mt-3">
                     <button class="btn btn-outline-primary">Guardar</button>
                 </div>

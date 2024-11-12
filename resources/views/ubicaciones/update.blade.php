@@ -9,12 +9,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 bg-light p-4 rounded">
-            <form action="/ubicaciones/store" method="POST">
+            <form action="{{ route('ubicaciones.update', $ubicacion->id) }}" method="POST">
                 @csrf
+                @method('PUT') <!-- Aquí indicamos que se trata de una actualización -->
+                
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $ubicacion->nombre }}">
                         @error('nombre')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -23,7 +25,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="direccion" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="direccion" name="direccion">
+                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $ubicacion->direccion }}">
                         @error('direccion')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -31,8 +33,9 @@
                         @enderror
                     </div>
                 </div>
+
                 <div class="text-center mt-3">
-                    <button class="btn btn-outline-primary">Guardar</button>
+                    <button class="btn btn-outline-primary">Actualizar</button>
                 </div>
             </form>
         </div>
